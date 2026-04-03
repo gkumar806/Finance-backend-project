@@ -10,7 +10,6 @@ A backend system for managing financial transactions with role-based access cont
 * JWT Authentication
   
 ## Features
-
 * User Registration and Login
 * Role-Based Access Control (Viewer, Analyst, Admin)
 * Transaction CRUD (Create, Read, Update, Delete)
@@ -26,7 +25,6 @@ A backend system for managing financial transactions with role-based access cont
 * POST /api/auth/login
 
 ### Transactions
-
 * GET /api/transactions
 * POST /api/transactions
 * PUT /api/transactions/:id
@@ -48,7 +46,6 @@ A backend system for managing financial transactions with role-based access cont
 5. Run the server:  '''npm run dev'''
    
 ## Key Concepts Implemented
-
 * JWT Authentication
 * Role-Based Access Control (RBAC)
 * REST API Design
@@ -56,9 +53,6 @@ A backend system for managing financial transactions with role-based access cont
 * Error Handling and Validation
   
 ## Roles and Permissions
-
- Role     Permissions                   
------------------------
  Viewer: Read-only access              
  Analyst: Read and dashboard summary    
  Admin: Full access (CRUD operations) 
