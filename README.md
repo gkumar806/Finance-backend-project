@@ -59,7 +59,7 @@ A backend system for managing financial transactions with role-based access cont
 
  Role     Permissions                   
 -----------------------
- Viewer -->Read-only access              
- Analyst --> Read and dashboard summary    
- Admin  -->  Full access (CRUD operations) 
+ Viewer: Read-only access              
+ Analyst: Read and dashboard summary    
+ Admin: Full access (CRUD operations) 
 
