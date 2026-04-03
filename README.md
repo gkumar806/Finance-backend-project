@@ -1,56 +1,69 @@
-1. Finance Backend API
+# Finance Backend API
 
-A backend system for managing financial transactions with role-based access control and dashboard analytics.
+## Overview
+A backend system for managing financial transactions with role-based access control (RBAC) and dashboard analytics. It allows users to securely manage financial records based on their roles.
 
-->Tech Stack
-  Node.js
-  Express.js
-  MongoDB
-  JWT Authentication
+## Tech Stack
+* Node.js
+* Express.js
+* MongoDB
+* JWT Authentication
+  
+## Features
 
-->Features
- User Registration & Login
- Role-Based Access Control (Viewer, Analyst, Admin)
- Transaction CRUD (Create, Read, Update, Delete)
- Dashboard Summary (Income, Expense, Balance)
- Filtering & Pagination
- Secure APIs using JWT
+* User Registration and Login
+* Role-Based Access Control (Viewer, Analyst, Admin)
+* Transaction CRUD (Create, Read, Update, Delete)
+* Dashboard Summary (Income, Expense, Balance)
+* Filtering and Pagination
+* Secure APIs using JWT
 
- -->API Endpoints
-->Auth
- POST /api/auth/register
-POST /api/auth/login
+## API Endpoints
 
-->Transactions
-GET /api/transactions
-POST /api/transactions
-PUT /api/transactions/
-DELETE /api/transactions/
+### Auth
 
-->Dashboard
-GET /api/transactions/summary
+* POST /api/auth/register
+* POST /api/auth/login
 
-->Filter
-GET /api/transactions/filter
+### Transactions
 
--->Setup Instructions
-Clone repo
-Run npm install
+* GET /api/transactions
+* POST /api/transactions
+* PUT /api/transactions/:id
+* DELETE /api/transactions/:id
 
-Create .env:
-PORT=5000
-MONGO_URI=your_mongodb_uri
-JWT_SECRET=your_secret
-Run npm run dev
+### Dashboard
+* GET /api/transactions/summary
 
--->Key Concepts
- JWT Authentication
-Role-Based Access Control (RBAC)
-REST API Design
-Data Filtering & Pagination
-Error Handling
+### Filter
+* GET /api/transactions/filter
 
--->Roles
-Viewer → Read only
-Analyst → Read + Summary
-Admin → Full access
+## Setup Instructions
+1. Clone the repository
+2. Install dependencies:  '''npm install'''
+3. Create a `.env` file:
+   PORT=5000  
+   MONGO_URI=your_mongodb_uri  
+   JWT_SECRET=your_secret  
+   
+5. Run the server:  '''npm run dev'''
+6. 
+## Key Concepts Implemented
+
+* JWT Authentication
+* Role-Based Access Control (RBAC)
+* REST API Design
+* Data Filtering and Pagination
+* Error Handling and Validation
+* 
+## Roles and Permissions
+
+ Role     Permissions                   
+-----------------------
+ Viewer -->Read-only access              
+ Analyst --> Read and dashboard summary    
+ Admin  -->  Full access (CRUD operations) 
+
+## Author
+
+Gaurav Kumar
