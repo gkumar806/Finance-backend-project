@@ -45,9 +45,8 @@ A backend system for managing financial transactions with role-based access cont
    PORT=5000  
    MONGO_URI=your_mongodb_uri  
    JWT_SECRET=your_secret  
-   
 5. Run the server:  '''npm run dev'''
-6. 
+   
 ## Key Concepts Implemented
 
 * JWT Authentication
@@ -55,7 +54,7 @@ A backend system for managing financial transactions with role-based access cont
 * REST API Design
 * Data Filtering and Pagination
 * Error Handling and Validation
-* 
+  
 ## Roles and Permissions
 
  Role     Permissions                   
@@ -64,6 +63,3 @@ A backend system for managing financial transactions with role-based access cont
  Analyst --> Read and dashboard summary    
  Admin  -->  Full access (CRUD operations) 
 
-## Author
-
-Gaurav Kumar
