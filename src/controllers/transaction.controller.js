@@ -2,9 +2,9 @@ const Transaction = require("../models/transaction.model");
 
 
 //Add Transaction
-const addTransaction = async (req, res) => {
+const addTransaction=async(req,res)=>{
   try {
-    const { type, amount, category, description } = req.body;
+    const { type, amount, category, description }=req.body;
 
     if (!type || !amount || !category) {
       return res.status(400).json({
@@ -50,16 +50,16 @@ const addTransaction = async (req, res) => {
 
 
 // Get All Transactions
-const getTransactions = async (req, res) => {
+const getTransactions=async(req, res)=>{
   try {
-    let filter = {};
+    let filter={};
 
     // Admin sees all, others see their own
     if (req.user.role !== "admin") {
       filter.user = req.user.id;
     }
 
-    const transactions = await Transaction.find(filter).sort({ createdAt: -1 });
+    const transactions=await Transaction.find(filter).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,
@@ -76,7 +76,7 @@ const getTransactions = async (req, res) => {
 
 
 //Update Transaction
-const updateTransaction = async (req, res) => {
+const updateTransaction=async (req,res)=>{
   try {
     const transaction = await Transaction.findById(req.params.id);
 
@@ -89,7 +89,7 @@ const updateTransaction = async (req, res) => {
 
     // Owner OR admin
     if (
-      transaction.user.toString() !== req.user.id &&
+      transaction.user.toString()!==req.user.id &&
       req.user.role !== "admin"
     ) {
       return res.status(401).json({
@@ -98,7 +98,7 @@ const updateTransaction = async (req, res) => {
       });
     }
 
-    const updated = await Transaction.findByIdAndUpdate(
+    const updated=await Transaction.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -119,9 +119,9 @@ const updateTransaction = async (req, res) => {
 
 
 // Delete Transaction
-const deleteTransaction = async (req, res) => {
+const deleteTransaction=async (req, res) => {
   try {
-    const transaction = await Transaction.findById(req.params.id);
+    const transaction=await Transaction.findById(req.params.id);
 
     if (!transaction) {
       return res.status(404).json({
@@ -132,7 +132,7 @@ const deleteTransaction = async (req, res) => {
 
     // Owner OR admin
     if (
-      transaction.user.toString() !== req.user.id &&
+      transaction.user.toString()!==req.user.id &&
       req.user.role !== "admin"
     ) {
       return res.status(401).json({
@@ -148,7 +148,7 @@ const deleteTransaction = async (req, res) => {
       message: "Transaction deleted successfully",
     });
 
-  } catch (error) {
+  } catch(error){
     res.status(500).json({
       success: false,
       message: error.message,
@@ -158,24 +158,24 @@ const deleteTransaction = async (req, res) => {
 
 
 //Summary API
-const getSummary = async (req, res) => {
+const getSummary=async(req, res)=>{
   try {
-    const transactions = await Transaction.find({
+    const transactions=await Transaction.find({
       user: req.user.id,
     });
 
-    let income = 0;
-    let expense = 0;
-    let categoryTotals = {};
+    let income=0;
+    let expense=0;
+    let categoryTotals={};
 
-    transactions.forEach((t) => {
-      if (t.type === "income") income += t.amount;
+    transactions.forEach((t)=>{
+      if (t.type === "income") income+=t.amount;
       else expense += t.amount;
 
       if (!categoryTotals[t.category]) {
         categoryTotals[t.category] = 0;
       }
-      categoryTotals[t.category] += t.amount;
+      categoryTotals[t.category]+=t.amount;
     });
 
     res.status(200).json({
@@ -198,7 +198,7 @@ const getSummary = async (req, res) => {
 
 
 // Filter API
-const getFilteredTransactions = async (req, res) => {
+const getFilteredTransactions=async(req,res)=>{
   try {
     const {
       type,
@@ -214,7 +214,7 @@ const getFilteredTransactions = async (req, res) => {
       user: req.user.id,
     };
 
-    if (type) filter.type = new RegExp(`^${type}$`, "i");
+    if (type) filter.type=new RegExp(`^${type}$`, "i");
     if (category) filter.category = new RegExp(`^${category}$`, "i");
 
     if (startDate && endDate) {
@@ -237,8 +237,8 @@ const getFilteredTransactions = async (req, res) => {
       success: true,
       data: transactions,
       pagination: {
-        currentPage: Number(page),
-        totalPages: Math.ceil(total / limit),
+        currentPage:Number(page),
+        totalPages: Math.ceil(total/limit),
         totalRecords: total,
       },
     });
@@ -252,7 +252,7 @@ const getFilteredTransactions = async (req, res) => {
 };
 
 
-module.exports = {
+module.exports={
   addTransaction,
   getTransactions,
   updateTransaction,   

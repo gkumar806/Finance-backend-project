@@ -33,4 +33,4 @@ router.get("/summary", protect, authorize("analyst", "admin"), getSummary);
 router.get("/filter", protect, authorize("analyst", "admin"), getFilteredTransactions);
 
 
-module.exports = router;
+module.exports=router;

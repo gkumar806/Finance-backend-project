@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 
 //To Generate Token
-const generateToken = (id, role) => {
+const generateToken = (id, role)=>{
   return jwt.sign({ id, role }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
@@ -12,9 +12,9 @@ const generateToken = (id, role) => {
 
 
 // For Register
-exports.register = async (req, res) => {
+exports.register = async (req, res)=>{
   try {
-    const { name, email, password, role } = req.body;
+    const {name,email,password,role}=req.body;
 
     // to check Validation
     if (!name || !email || !password) {
@@ -24,11 +24,11 @@ exports.register = async (req, res) => {
       });
     }
 
-    const normalizedEmail = email.toLowerCase();
+    const normalizedEmail=email.toLowerCase();
 
     // check if user exists
-    const userExists = await User.findOne({ email: normalizedEmail });
-    if (userExists) {
+    const userExists=await User.findOne({ email: normalizedEmail });
+    if (userExists){
       return res.status(400).json({
         success: false,
         message: "User already exists",
@@ -36,7 +36,7 @@ exports.register = async (req, res) => {
     }
 
     // hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword=await bcrypt.hash(password, 10);
 
     // to create user
     const user = await User.create({
@@ -110,7 +110,7 @@ exports.login = async (req, res) => {
       },
     });
 
-  } catch (err) {
+  } catch(err){
     res.status(500).json({
       success: false,
       message: err.message,

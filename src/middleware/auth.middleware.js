@@ -1,16 +1,16 @@
-const jwt = require("jsonwebtoken");
+const jwt=require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   try {
-    const authHeader = req.headers.authorization;
+    const authHeader=req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")){
       return res.status(401).json({ message: "No token provided" });
     }
 
-    const token = authHeader.split(" ")[1];
+    const token=authHeader.split(" ")[1];
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded=jwt.verify(token, process.env.JWT_SECRET);
 
     // attach only required data
     req.user = {
@@ -20,7 +20,7 @@ module.exports = (req, res, next) => {
 
     next();
 
-  } catch (error) {
+  } catch (error){
     return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
